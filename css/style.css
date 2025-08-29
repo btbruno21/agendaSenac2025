@@ -121,3 +121,12 @@ table {
 table td{
     text-align: center;
 }
+
+table td a{
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+table td a:hover{
+    transform: scale(1.05);
+}

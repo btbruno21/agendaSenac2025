@@ -1,6 +1,7 @@
 <?php
 require 'conexao.php';
-class Contato {
+class Contato
+{
     private $id;
     private $nome;
     private $endereco;
@@ -14,28 +15,30 @@ class Contato {
 
     private $con;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->con = new Conexao();
     }
 
-    private function existeEmail($email){
+    private function existeEmail($email)
+    {
         $sql = $this->con->conectar()->prepare("SELECT id FROM contatos WHERE email = :email");
         $sql->bindParam(":email", $email, PDO::PARAM_STR);
         $sql->execute();
 
-        if($sql->rowCount() > 0){
-            $array = $sql->fetch();//retorna o email encontrado
-        }
-        else{
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetch(); //retorna o email encontrado
+        } else {
             $array = array();
         }
         return $array;
     }
 
-    public function adicionar($email, $nome, $endereco, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo){
+    public function adicionar($email, $nome, $endereco, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo)
+    {
         $emailExistente = $this->existeEmail($email);
-        if(count($emailExistente) == 0){
-            try{
+        if (count($emailExistente) == 0) {
+            try {
                 $this->nome = $nome;
                 $this->endereco = $endereco;
                 $this->email = $email;
@@ -57,37 +60,63 @@ class Contato {
                 $sql->bindParam(":ativo", $this->ativo, PDO::PARAM_STR);
                 $sql->execute();
                 return TRUE;
-            }catch(PDOException $ex){
-                return 'ERRO: '.$ex->getMessage();
+            } catch (PDOException $ex) {
+                return 'ERRO: ' . $ex->getMessage();
             }
-        }
-        else{
+        } else {
             return FALSE;
         }
     }
-    public function listar() {
-        try{
+    public function listar()
+    {
+        try {
             $sql = $this->con->conectar()->prepare("SELECT * FROM contatos");
             $sql->execute();
             return $sql->fetchAll();
-        }catch(PDOException $ex){
-            echo 'ERRO'.$ex->getMessage();
+        } catch (PDOException $ex) {
+            echo 'ERRO: ' . $ex->getMessage();
         }
     }
 
-    public function buscar($id) {
-        try{
+    public function buscar($id)
+    {
+        try {
             $sql = $this->con->conectar()->prepare("SELECT * FROM contatos WHERE id = :id");
             $sql->bindValue(':id', $id);
             $sql->execute();
-            if($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 return $sql->fetch();
-            } else{
+            } else {
                 return array();
             }
-        }catch(PDOException $ex){
-            echo 'ERRO'.$ex->getMessage();
+        } catch (PDOException $ex) {
+            echo 'ERRO: ' . $ex->getMessage();
+        }
+    }
+
+    public function editar($nome, $endereco, $email, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo, $id)
+    {
+        $emailExistente = $this->existeEmail($email);
+        if (count($emailExistente) > 0 && $emailExistente['id'] != $id) {
+            return FALSE;
+        } else {
+            try {
+                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, endereco = :endereco, email = :email, telefone = :telefone, redeSocial = :redeSocial, profissao = :profissao, dtNasc = :dtNasc, foto = :foto, ativo = :ativo WHERE id = :id");
+                $sql->bindValue(':nome', $nome);
+                $sql->bindValue(':endereco', $endereco);
+                $sql->bindValue(':email', $email);
+                $sql->bindValue(':telefone', $telefone);
+                $sql->bindValue(':redeSocial', $redeSocial);
+                $sql->bindValue(':profissao', $profissao);
+                $sql->bindValue(':dtNasc', $dtNasc);
+                $sql->bindValue(':foto', $foto);
+                $sql->bindValue(':ativo', $ativo);
+                $sql->bindValue(':id', $id);
+                $sql->execute();
+                return TRUE;
+            } catch (PDOException $ex) {
+                echo 'ERRO: ' . $ex->getMessage();
+            }
         }
     }
 }
-?>
