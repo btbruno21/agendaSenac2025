@@ -41,7 +41,7 @@ $fn = new Funcoes();
                     <td><?php echo $item['ativo']; ?></td>
                     <td>
                         <a href="editarContato.php?id=<?php echo $item['id'] ?>">EDITAR </a>
-                        <a href="#"> EXCLUIR</a>
+                        <a href="excluirContato.php"> EXCLUIR</a>
                     </td>
                 </tr>
             </tbody>
