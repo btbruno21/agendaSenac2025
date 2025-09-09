@@ -8,6 +8,7 @@ $fn = new Funcoes();
 ?>
 <main>
     <button><a href="adicionarContato.php">Adicionar um contato</a></button>
+    <button><a href="infoUser.php">Usuários</a></button>
 
     <table border="2" width="100%">
         <tr>
@@ -41,7 +42,7 @@ $fn = new Funcoes();
                     <td><?php echo $item['ativo']; ?></td>
                     <td>
                         <a href="editarContato.php?id=<?php echo $item['id'] ?>">EDITAR </a>
-                        <a href="excluirContato.php"> EXCLUIR</a>
+                        <a href="excluirContato.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse contato?')"> EXCLUIR</a>
                     </td>
                 </tr>
             </tbody>

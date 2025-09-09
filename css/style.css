@@ -13,8 +13,10 @@ html {
 header {
     height: 100px;
     background-color: rgb(5, 5, 160);
-    display: flex;                /* altera de block para flex */
-    align-items: center;          /* centraliza verticalmente */
+    display: flex;
+    /* altera de block para flex */
+    align-items: center;
+    /* centraliza verticalmente */
     overflow: hidden;
 }
 
@@ -25,8 +27,10 @@ main {
 footer {
     height: 50px;
     background-color: rgb(5, 5, 160);
-    display: flex;                /* altera de block para flex */
-    align-items: center;          /* centraliza verticalmente */
+    display: flex;
+    /* altera de block para flex */
+    align-items: center;
+    /* centraliza verticalmente */
 }
 
 button {
@@ -38,6 +42,7 @@ button {
     margin-left: 1vw;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.6s ease;
+    color: white;
 }
 
 button:hover {
@@ -61,11 +66,8 @@ footer h3 {
 }
 
 form {
-    margin-left: 1.5vw;
+    margin-left: 2.5vw;
     margin-bottom: 1vw;
-}
-
-form {
     font-size: 1.2vw;
 }
 
@@ -76,11 +78,13 @@ input {
 input[type="text"],
 input[type="mail"],
 input[type="tel"],
-input[type="date"] {
+input[type="date"],
+input[type="password"] {
     border: 1px solid #000;
     border-radius: 2vw;
-    padding: 0.3vw;
+    padding: 0.3vw 0.8vw 0.3vw 0.8vw;
     height: 1.6vw;
+    margin-left: -0.4vw;
 }
 
 input[type="submit"] {
@@ -95,7 +99,7 @@ input[type="submit"] {
 }
 
 input[type="text"],
-input[type="mail"]{
+input[type="mail"] {
     width: 20vw;
 }
 
@@ -104,11 +108,15 @@ input[type="date"] {
     width: 12vw;
 }
 
+input[type="date"] {
+    text-align: center;
+}
+
 input[type="submit"]:hover {
     transform: scale(1.08);
 }
 
-.formulario h1{
+.formulario h1 {
     font-size: 2.5vw;
     margin-left: 1vw;
 }
@@ -118,15 +126,59 @@ table {
     border: 3px solid #000;
 }
 
-table td{
+table td {
     text-align: center;
 }
 
-table td a{
+table td a {
     color: #000;
     transition: all 0.3s ease;
 }
 
-table td a:hover{
+table td a:hover {
     transform: scale(1.05);
 }
+
+.user form {
+    width: 30%;
+    margin-top: 2vw;
+}
+
+.user input[type="text"],
+.user input[type="mail"],
+.user input[type="password"] {
+    width: 100%;
+    margin-bottom: 2vw;
+}
+
+.user input[type="submit"] {
+    margin-top: 2vw;
+}
+
+.infoUser{
+    padding: 2vw;
+}
+
+.infoUser button {
+    font-size: 1.5vw;
+}
+
+.infoUser input[type="number"] {
+    border: 1px solid #000;
+    border-radius: 2vw;
+    padding: 0.3vw 0.8vw 0.3vw 0.8vw;
+    height: 1.6vw;
+    margin-left: -0.4vw;
+}
+
+.infoUser label{
+    margin-right: 1vw;
+}
+
+.infoUser form{
+    margin: 0;
+}
+
+/* .checkbox{
+    width: 48%;
+} */
