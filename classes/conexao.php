@@ -10,11 +10,11 @@ class Conexao {
     private static $pdo;
 
     public function __construct(){
-        $this->servidor = "192.168.192.38";
+        $this->servidor = "localhost";
         $this->banco = "agendaSenac2025";
         $this->usuario = "root";
         $this->senha = "";
-        $this->port = 3307;
+        $this->port = 3306;
     }
 
     public function conectar(){
