@@ -1,21 +1,22 @@
 <?php
-include 'inc/header.php'; 
+include 'inc/header.php';
 include 'classes/usuario.php';
 
 $usuario = new Usuario();
 ?>
 
 <main>
-    <button><a href="criarUsuario.php">Criar um Usuário</a></button>
 
-    <table border="2" width="100%">
-        <tr>
-            <th>ID</th>
-            <th>NOME</th>
-            <th>EMAIL</th>
-            <th>PERMISSÕES</th>
-            <th>AÇÕES</th>
-        </tr>
+    <table class="tabela-contatos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>EMAIL</th>
+                <th>PERMISSÕES</th>
+                <th>AÇÕES</th>
+            </tr>
+        </thead>
         <?php
         $lista = $usuario->listarUsuario();
         foreach ($lista as $item):
@@ -37,6 +38,7 @@ $usuario = new Usuario();
         endforeach;
         ?>
     </table>
+    <button><a href="criarUsuario.php">Criar um Usuário</a></button>
 </main>
 
 <?php include 'inc/header.php'; ?>

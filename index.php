@@ -7,23 +7,22 @@ $contato = new Contato();
 $fn = new Funcoes();
 ?>
 <main>
-    <button><a href="adicionarContato.php">Adicionar um contato</a></button>
-    <button><a href="infoUser.php">Usuários</a></button>
-
-    <table border="2" width="100%">
-        <tr>
-            <th>ID</th>
-            <th>NOME</th>
-            <th>ENDEREÇO</th>
-            <th>EMAIL</th>
-            <th>TELEFONE</th>
-            <th>REDE SOCIAL</th>
-            <th>PROFISSÃO</th>
-            <th>NASCIMENTO</th>
-            <th>FOTO</th>
-            <th>ATIVO</th>
-            <th>AÇÕES</th>
-        </tr>
+    <table class="tabela-contatos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>ENDEREÇO</th>
+                <th>EMAIL</th>
+                <th>TELEFONE</th>
+                <th>REDE SOCIAL</th>
+                <th>PROFISSÃO</th>
+                <th>NASCIMENTO</th>
+                <th>FOTO</th>
+                <th>ATIVO</th>
+                <th>AÇÕES</th>
+            </tr>
+        </thead>
         <?php
         $lista = $contato->listar();
         foreach ($lista as $item):
@@ -51,6 +50,7 @@ $fn = new Funcoes();
         endforeach;
         ?>
     </table>
+    <button><a href="adicionarContato.php">Adicionar um contato</a></button>
 </main>
 
 <?php include 'inc/footer.php'; ?>
