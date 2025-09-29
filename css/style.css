@@ -2,6 +2,9 @@ body {
     margin: 0 auto;
     background-color: #ccc;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 html {
@@ -14,35 +17,42 @@ header {
     display: flex;
     align-items: center;
     overflow: hidden;
+    width: 100%;
+    padding: 1vw 0;
 }
 
 main {
-    height: 550px;
+    flex: 1;
 }
 
 footer {
-    height: 50px;
     background-color: rgb(5, 5, 160);
-    display: flex;
-    /* altera de block para flex */
-    align-items: center;
-    /* centraliza verticalmente */
+    text-align: center;
+    margin: 0;
+    padding: 1px 0;
 }
 
 button {
-    margin-top: 2vw;
     background-color: rgb(2, 2, 160);
     border-radius: 2vw;
-    padding: 0.6vw;
+    padding: 0.8vw;
     border: 1px solid rgb(2, 2, 160);
-    margin-left: 1vw;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.6s ease;
     color: white;
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    background-color: rgb(1, 1, 79);
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
 }
 
 a {
@@ -50,44 +60,66 @@ a {
     color: white;
     font-size: 1.5vw;
 }
-header h1 {
+
+header a {
+    display: flex;
+    align-items: center;   /* centraliza verticalmente */
+    text-decoration: none; /* remove sublinhado */
+    color: inherit;        /* mantém cor herdada */
     color: white;
     margin-left: 1vw;
 }
 
-header a{
+header h1 {
+    transition: all 0.5s ease;
+    color: white;
+    font-size: 2.5vw;
+    margin: 0;
+    font-family: 'Fredoka One', 'Anton', sans-serif;
+    font-weight: 100;
+    margin-left: 1vw !important;
+}
+
+header h1:hover{
+    transform: scale(1.0001);
+    color: #EDAE49;
+}
+
+header h5 {
     transition: all 0.5s ease;
     height: auto;
+    padding: 0;
 }
 
-header a:hover{
-    transform: scale(1.02);
+header h5:hover {
+    transform: scale(1.01);
+    color: #EDAE49;
 }
 
-.links{
+.links {
     margin-left: auto;
-    padding: 0 3vw 0 0;
+    padding: 0 2vw 0 0;
     transition: all 0.6s ease;
-    width: auto;
 }
 
-.links:hover {
-    transform: scale(1.04);
-}
-
-.links h5{
+.links h5 {
     font-size: 2vw;
+    margin: 0;
 }
 
 footer h3 {
     color: white;
-    margin-left: 1vw;
+    font-size: 1.3vw;
+    font-family: 'Fredoka One', 'Anton', sans-serif;
+    font-weight: 100;
 }
 
 form {
+    margin-top: 2vw;
     margin-left: 2.5vw;
     margin-bottom: 1vw;
     font-size: 1.2vw;
+    width: 30%;
 }
 
 input {
@@ -104,6 +136,7 @@ input[type="password"] {
     padding: 0.3vw 0.8vw 0.3vw 0.8vw;
     height: 1.6vw;
     margin-left: -0.4vw;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 input[type="submit"] {
@@ -118,7 +151,8 @@ input[type="submit"] {
 }
 
 input[type="text"],
-input[type="mail"] {
+input[type="mail"],
+input[type="password"] {
     width: 20vw;
 }
 
@@ -135,19 +169,17 @@ input[type="submit"]:hover {
     transform: scale(1.08);
 }
 
+.formulario {
+    padding-top: 1vw;
+}
+
 .formulario h1 {
     font-size: 2.5vw;
-    margin-left: 1vw;
+    margin: 0;
+    padding-left: 1vw;
+    font-family: 'Fredoka One', 'Anton', sans-serif;
+    font-weight: 100;
 }
-
-/* table {
-    margin-top: 2vw;
-    border: 3px solid #000;
-}
-
-table td {
-    text-align: center;
-} */
 
 table td a {
     color: #000;
@@ -158,23 +190,7 @@ table td a:hover {
     transform: scale(1.05);
 }
 
-.user form {
-    width: 30%;
-    margin-top: 2vw;
-}
-
-.user input[type="text"],
-.user input[type="mail"],
-.user input[type="password"] {
-    width: 100%;
-    margin-bottom: 2vw;
-}
-
-.user input[type="submit"] {
-    margin-top: 2vw;
-}
-
-.infoUser{
+.infoUser {
     padding: 2vw;
 }
 
@@ -190,27 +206,20 @@ table td a:hover {
     margin-left: -0.4vw;
 }
 
-.infoUser label{
+.infoUser label {
     margin-right: 1vw;
 }
 
-.infoUser form{
+.infoUser form {
     margin: 0;
 }
-
-/* .acoes{
-    display: flex;
-    gap: 1vw;
-    align-items: center;
-    justify-content: center;
-} */
 
 .tabela-contatos {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Cabeçalho */
@@ -219,12 +228,14 @@ table td a:hover {
     color: white;
     padding: 0.8vw;
     text-align: left;
+    font-size: 1vw;
 }
 
 /* Linhas e células */
 .tabela-contatos td {
     padding: 0.8vw;
     border-bottom: 1px solid #ddd;
+    font-size: 1vw;
 }
 
 /* Alternar cor das linhas */
@@ -249,4 +260,15 @@ table td a:hover {
 .tabela-contatos .acoes a:hover {
     background: #ddd;
     color: rgb(2, 2, 160);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* label em cima do input */
+    margin-bottom: 15px;    /* espaço entre os campos */
+}
+
+header img {
+    background-color: transparent;
+    width: 10%;
 }

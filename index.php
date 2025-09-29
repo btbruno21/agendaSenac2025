@@ -7,6 +7,9 @@ $contato = new Contato();
 $fn = new Funcoes();
 ?>
 <main>
+    <div class="button">
+        <button><a href="adicionarContato.php">Adicionar um contato</a></button>
+    </div>
     <table class="tabela-contatos">
         <thead>
             <tr>
@@ -50,7 +53,6 @@ $fn = new Funcoes();
         endforeach;
         ?>
     </table>
-    <button><a href="adicionarContato.php">Adicionar um contato</a></button>
 </main>
 
 <?php include 'inc/footer.php'; ?>

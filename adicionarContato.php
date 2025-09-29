@@ -1,34 +1,60 @@
 <?php
-require 'inc/header.php';
+include 'inc/header.php';
 ?>
 
 <div class="formulario">
-<h1>ADICIONAR CONTATO</h1>
+    <h1>ADICIONAR CONTATO</h1>
 </div>
 
 <form method="POST" action="adicionarContatoSubmit.php">
-    Nome: <br>
-    <input type="text" name="nome"/> <br><br>
-    Endereço: <br>
-    <input type="text" name="endereco"/> <br><br>
-    Email: <br>
-    <input type="mail" name="email"/> <br><br>
-    Telefone: <br>
-    <input type="tel" name="telefone"/> <br><br>
-    Rede Social: <br>
-    <input type="text" name="redeSocial"/> <br><br>
-    Profissão: <br>
-    <input type="text" name="profissao"/> <br><br>
-    Data de Nascimento: <br>
-    <input type="date" name="dtNasc"/> <br><br>
-    Foto: <br>
-    <input type="text" name="foto"/> <br><br>
-    Ativo: <br>
-    <input type="text" name="ativo"/> <br><br>
+    <div class="form-group">
+        <label>Nome:</label>
+        <input type="text" name="nome" />
+    </div>
 
-    <input type="submit" name="btCadastrar" value="ADICIONAR"/>
+    <div class="form-group">
+        <label>Endereço:</label>
+        <input type="text" name="endereco" />
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="mail" name="email" />
+    </div>
+
+    <div class="form-group">
+        <label>Telefone:</label>
+        <input type="tel" name="telefone" />
+    </div>
+
+    <div class="form-group">
+        <label>Rede Social:</label>
+        <input type="text" name="redeSocial" />
+    </div>
+
+    <div class="form-group">
+        <label>Profissão:</label>
+        <input type="text" name="profissao" />
+    </div>
+
+    <div class="form-group">
+        <label>Data de nascimento:</label>
+        <input type="date" name="dtNasc" />
+    </div>
+
+    <div class="form-group">
+        <label>Foto:</label>
+        <input type="text" name="foto" />
+    </div>
+
+    <div class="form-group">
+        <label>Ativo:</label>
+        <input type="text" name="ativo" />
+    </div>
+
+    <input type="submit" name="btCadastrar" value="ADICIONAR" />
 </form>
 
 <?php
-require 'inc/footer.php';
+include 'inc/footer.php';
 ?>

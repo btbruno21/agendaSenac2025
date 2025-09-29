@@ -6,7 +6,9 @@ $usuario = new Usuario();
 ?>
 
 <main>
-
+    <div class="button">
+        <button><a href="criarUsuario.php">Criar um Usuário</a></button>
+    </div>
     <table class="tabela-contatos">
         <thead>
             <tr>
@@ -38,7 +40,6 @@ $usuario = new Usuario();
         endforeach;
         ?>
     </table>
-    <button><a href="criarUsuario.php">Criar um Usuário</a></button>
 </main>
 
-<?php include 'inc/header.php'; ?>
+<?php include 'inc/footer.php'; ?>
