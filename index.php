@@ -5,8 +5,18 @@ include 'classes/funcoes.php';
 
 $contato = new Contato();
 $fn = new Funcoes();
+
+session_start();
+if (!($_SESSION)) {
+    header("Location: login.php");
+}
 ?>
 <main>
+    <!-- <?php if ($_SESSION): ?>
+        <div class="button">
+            <button><a href="#">Sair</a></button>
+        </div>
+    <?php endif; ?> -->
     <div class="button">
         <button><a href="adicionarContato.php">Adicionar um contato</a></button>
     </div>

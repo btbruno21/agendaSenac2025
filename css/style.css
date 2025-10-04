@@ -44,7 +44,7 @@ button {
 
 button:hover {
     transform: scale(1.02);
-    background-color: rgb(1, 1, 79);
+    background-color: rgb(1, 1, 120);
     box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.4);
 }
 
@@ -122,12 +122,16 @@ form {
     width: 30%;
 }
 
+form a{
+    color: #000;
+}
+
 input {
     margin-top: 0.2vw;
 }
 
 input[type="text"],
-input[type="mail"],
+input[type="email"],
 input[type="tel"],
 input[type="date"],
 input[type="password"] {

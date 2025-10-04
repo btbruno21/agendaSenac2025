@@ -110,11 +110,9 @@ class Usuario
 
     public function deletarUsuario($id)
     {
-        // Primeiro busca o usuário
         $usuario = $this->buscarUsuario($id);
 
         if (empty($usuario)) {
-            // Usuário não existe
             return false;
         }
 
@@ -122,10 +120,25 @@ class Usuario
             $sql = $this->con->conectar()->prepare("DELETE FROM usuario WHERE id = :id");
             $sql->bindValue(':id', $id);
             $sql->execute();
-            return true; // delete realizado com sucesso
+            return true;
         } catch (PDOException $ex) {
             echo 'ERRO: ' . $ex->getMessage();
             return false;
         }
+    }
+
+    public function fazerLogin($email, $senha)
+    {
+        $sql = $this->con->conectar()->prepare("SELECT id, email, senha FROM usuario WHERE email = :email AND senha = :senha");
+        $sql->bindValue(":email", $email);
+        $sql->bindValue(":senha", $senha);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $sql = $sql->fetch();
+            $_SESSION['logado'] = $sql['id'];
+            return true;
+        }
+        return false;
     }
 }
