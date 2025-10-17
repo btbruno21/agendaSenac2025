@@ -1,8 +1,14 @@
 <?php
 include 'inc/header.php';
 include 'classes/usuario.php';
-
+session_start();
 $usuario = new Usuario();
+
+$usuario->setUsuario($_SESSION['logado']);
+if (!($usuario->temPermissao("super"))) {
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <main>

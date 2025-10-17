@@ -7,13 +7,9 @@ if (!empty($_POST['email'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    if (isset($_POST['permissoes'])) {
-        foreach ($_POST['permissoes'] as $p) {
-            echo "Permissão: $p <br>";
-        }
-    }
+    $permissoes = $_POST['permissoes'] ?? [];
+    $permissoes = implode(",", $permissoes);
 
-    $permissoes = implode(",", $_POST['permissoes']);
     $usuario->adicionarUsuario($email, $nome, $senha, $permissoes);
     header('Location: infoUser.php');
 } else {

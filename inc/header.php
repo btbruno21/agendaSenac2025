@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,8 +14,12 @@
 
 <body>
     <header>
-        <a href="index.php"><img src="img/Senac.png"><h1>Agenda Senac 2025</h1></a>
-        <div class="links">
-            <a href="infoUser.php"><h5>Usuários</h5></a>
-        </div>
+        <a href="index.php"><img src="img/Senac.png">
+            <h1>Agenda Senac 2025</h1>
+        </a>
+        <?php if ($_SESSION['logado']): ?>
+            <div class="links">
+                <a href="sair.php">Sair</a>
+            </div>
+        <?php endif; ?>
     </header>

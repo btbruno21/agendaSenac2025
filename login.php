@@ -33,3 +33,5 @@ if (!empty($_POST['email'])) {
         <input type="submit" value="LOGIN"/>
     </form>
 </main>
+
+<?php include 'inc/footer.php';?>
