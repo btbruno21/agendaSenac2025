@@ -14,13 +14,43 @@ if (!empty($_GET['id'])) {
     header("Location: /agendaSenac2025");
     exit;
 }
+
+if (!empty($_POST['id'])) {
+    $nome = $_POST['nome'];
+    $endereco = $_POST['endereco'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $redeSocial = $_POST['redeSocial'];
+    $profissao = $_POST['profissao'];
+    $dtNasc = $_POST['dtNasc'];
+    if (isset($_FILES['foto'])) {
+        $foto = $_FILES['foto'];
+    } else {
+        $foto = array();
+    }
+    $ativo = $_POST['ativo'];
+
+    if (!empty($email)) {
+        $contato->editar($nome, $endereco, $email, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo, $_GET['id']);
+    }
+    header('Location: /agendaSenac2025');
+}
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $info = $contato->getContato($_GET['id']);
+} else{
+    ?>
+    <script type="text/javascript">window.location.href="index.php";</script>
+    <?php
+    exit;
+}
 ?>
 <main>
     <div class="formulario">
         <h1>EDITAR CONTATO</h1>
     </div>
 
-    <form method="POST" action="editarContatoSubmit.php">
+    <form method="POST" enctype="multipart/form-data"> <!-- permite adicionar imagens no form -->
         <input type="hidden" name="id" value="<?php echo $info['id']; ?>" />
 
         <div class="form-group">
@@ -60,7 +90,20 @@ if (!empty($_GET['id'])) {
 
         <div class="form-group">
             <label>Foto:</label>
-            <input type="text" name="foto" value="<?php echo $info['foto']; ?>" />
+            <input type="file" name="foto[]" multiple />
+            <div class="grupo">
+                <div class="cabecalho">
+                    <label>Foto Contato</label>
+                </div>
+                <div class="corpo">
+                    <?php foreach ($info['foto'] as $fotos): ?>
+                        <div class="foto_item">
+                            <img src="img/contatos/<?php echo $fotos['url']; ?>" />
+                            <a href="excluir_foto.php?id=<?php $fotos['id']; ?>">Excluir Imagem</a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
