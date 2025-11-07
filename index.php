@@ -19,7 +19,7 @@ $usuario->setUsuario($_SESSION['logado']);
 <main>
     <?php if ($usuario->temPermissao("add")): ?>
         <div class="button">
-            <button><a href="adicionarContato.php">Adicionar um contato</a></button>
+            <a href="adicionarContato.php"><button>Adicionar um contato</button></a>
         </div>
     <?php endif; ?>
     <table class="tabela-contatos">
@@ -83,7 +83,7 @@ $usuario->setUsuario($_SESSION['logado']);
     </table>
     <?php if ($usuario->temPermissao("super")): ?>
         <div class="button">
-            <button><a href="infoUser.php">Usuario</a></button>
+            <a href="infoUser.php"><button>Usuário</button></a>
         </div>
     <?php endif; ?>
 </main>

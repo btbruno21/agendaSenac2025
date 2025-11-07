@@ -34,7 +34,7 @@ class Contato
         return $array;
     }
 
-    public function adicionar($email, $nome, $endereco, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo)
+    public function adicionar($email, $nome, $endereco, $telefone, $redeSocial, $profissao, $dtNasc, $ativo)
     {
         $emailExistente = $this->existeEmail($email);
         if (count($emailExistente) == 0) {
@@ -46,9 +46,8 @@ class Contato
                 $this->redeSocial = $redeSocial;
                 $this->profissao = $profissao;
                 $this->dtNasc = $dtNasc;
-                $this->foto = $foto;
                 $this->ativo = $ativo;
-                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, endereco, email, telefone, redeSocial, profissao, dtNasc, foto, ativo) VALUES(:nome, :endereco, :email, :telefone, :redeSocial, :profissao, :dtNasc, :foto, :ativo)");
+                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, endereco, email, telefone, redeSocial, profissao, dtNasc, ativo) VALUES(:nome, :endereco, :email, :telefone, :redeSocial, :profissao, :dtNasc, :ativo)");
                 $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                 $sql->bindParam(":endereco", $this->endereco, PDO::PARAM_STR);
                 $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
@@ -56,7 +55,6 @@ class Contato
                 $sql->bindParam(":redeSocial", $this->redeSocial, PDO::PARAM_STR);
                 $sql->bindParam(":profissao", $this->profissao, PDO::PARAM_STR);
                 $sql->bindParam(":dtNasc", $this->dtNasc, PDO::PARAM_STR);
-                $sql->bindParam(":foto", $this->foto, PDO::PARAM_STR);
                 $sql->bindParam(":ativo", $this->ativo, PDO::PARAM_STR);
                 $sql->execute();
                 return TRUE;

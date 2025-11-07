@@ -17,7 +17,7 @@
         <a href="index.php"><img src="img/Senac.png">
             <h1>Agenda Senac 2025</h1>
         </a>
-        <?php if ($_SESSION['logado']): ?>
+           <?php if (isset($_SESSION['logado'])): ?>
             <div class="links">
                 <a href="sair.php">Sair</a>
             </div>

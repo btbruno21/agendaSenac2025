@@ -19,7 +19,7 @@ if (!empty($_POST['email'])) {
     <div class="formulario">
         <h1>LOGIN</h1>
     </div>
-    <form method="POST">
+    <form method="POST" class="form-login">
         <div class="form-group">
             <label>Email:</label>
             <input type="email" name="email">

@@ -42,10 +42,10 @@ include 'inc/header.php';
             <input type="date" name="dtNasc" />
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>Foto:</label>
             <input type="text" name="foto" />
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label>Ativo:</label>
