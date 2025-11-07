@@ -41,7 +41,7 @@ $usuario->setUsuario($_SESSION['logado']);
             </tr>
         </thead>
         <?php
-        $lista = $contato->listar();
+        $lista = $contato->getFoto();
         foreach ($lista as $item):
         ?>
             <tbody>
@@ -54,7 +54,13 @@ $usuario->setUsuario($_SESSION['logado']);
                     <td><?php echo $item['redeSocial']; ?></td>
                     <td><?php echo $item['profissao']; ?></td>
                     <td><?php echo $fn->dtNasc($item['dtNasc'], 2); ?></td>
-                    <td><?php echo $item['foto']; ?></td>
+                    <td>
+                        <?php if (!empty($item['url'])): ?>
+                            <img src="img/contatos/<?php echo $item['url'];?>" height="50px" border="0">
+                        <?php else: ?>
+                            <img src="img/default.png" height="50px">
+                        <?php endif; ?>
+                    </td>
                     <td><?php echo $item['ativo']; ?></td>
                     <?php if ($usuario->temPermissao("edit") || $usuario->temPermissao("del")): ?>
                         <td class="acoes">
@@ -63,7 +69,7 @@ $usuario->setUsuario($_SESSION['logado']);
                             <?php endif; ?>
                             <?php if ($usuario->temPermissao("edit") && $usuario->temPermissao("del")): ?>
                                 |
-                            <?php endif?>
+                            <?php endif ?>
                             <?php if ($usuario->temPermissao("del")): ?>
                                 <a href="excluirContato.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse contato?')"> EXCLUIR</a>
                             <?php endif; ?>
@@ -76,9 +82,9 @@ $usuario->setUsuario($_SESSION['logado']);
         ?>
     </table>
     <?php if ($usuario->temPermissao("super")): ?>
-    <div class="button">
-        <button><a href="infoUser.php">Usuario</a></button>
-    </div>
+        <div class="button">
+            <button><a href="infoUser.php">Usuario</a></button>
+        </div>
     <?php endif; ?>
 </main>
 

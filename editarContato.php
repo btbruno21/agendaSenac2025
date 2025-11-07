@@ -29,7 +29,6 @@ if (!empty($_POST['id'])) {
         $foto = array();
     }
     $ativo = $_POST['ativo'];
-
     if (!empty($email)) {
         $contato->editar($nome, $endereco, $email, $telefone, $redeSocial, $profissao, $dtNasc, $foto, $ativo, $_GET['id']);
     }
@@ -99,7 +98,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <?php foreach ($info['foto'] as $fotos): ?>
                         <div class="foto_item">
                             <img src="img/contatos/<?php echo $fotos['url']; ?>" />
-                            <a href="excluir_foto.php?id=<?php $fotos['id']; ?>">Excluir Imagem</a>
+                            <a href="excluir_foto.php?id=<?php echo $fotos['id']; ?>">Excluir Imagem</a>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -67,6 +67,7 @@ class Contato
             return FALSE;
         }
     }
+
     public function listar()
     {
         try {
@@ -76,6 +77,17 @@ class Contato
         } catch (PDOException $ex) {
             echo 'ERRO: ' . $ex->getMessage();
         }
+    }
+
+    public function getFoto()
+    {
+        $array = array();
+        $sql = $this->con->conectar()->prepare("SELECT *, (select foto_contato.url from foto_contato where foto_contato.id_contato = contatos.id limit 1) as url FROM contatos");
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
     }
 
     public function buscar($id)
@@ -101,7 +113,7 @@ class Contato
             return FALSE;
         } else {
             try {
-                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, endereco = :endereco, email = :email, telefone = :telefone, redeSocial = :redeSocial, profissao = :profissao, dtNasc = :dtNasc, foto = :foto, ativo = :ativo WHERE id = :id");
+                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, endereco = :endereco, email = :email, telefone = :telefone, redeSocial = :redeSocial, profissao = :profissao, dtNasc = :dtNasc, ativo = :ativo WHERE id = :id");
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':endereco', $endereco);
                 $sql->bindValue(':email', $email);
@@ -109,7 +121,6 @@ class Contato
                 $sql->bindValue(':redeSocial', $redeSocial);
                 $sql->bindValue(':profissao', $profissao);
                 $sql->bindValue(':dtNasc', $dtNasc);
-                // $sql->bindValue(':foto', $foto);
 
                 $sql->bindValue(':ativo', $ativo);
                 $sql->bindValue(':id', $id);
@@ -119,9 +130,13 @@ class Contato
                     for ($q = 0; $q < count($foto['tmp_name']); $q++) {
                         $tipo = $foto['type'][$q];
                         if (in_array($tipo, array('image/jpeg', 'image/png'))) {
-                            $tmpname = md5(time() . rand(0, 9999)) . 'jpg';
-                            move_uploaded_file($foto['tmp_name'][$q], 'img/contatos/' . $tmpname);
+                            $tmpname = md5(time() . rand(0, 9999)) . '.jpg';
+                            if (is_uploaded_file($foto['tmp_name'][$q])) {
+                                move_uploaded_file($foto['tmp_name'][$q], 'img/contatos/' . $tmpname);
+                            }
+                            
                             list($width_orig, $height_orig) = getimagesize('img/contatos/' . $tmpname);
+
                             $ratio = $width_orig / $height_orig;
 
                             $width = 500;
@@ -141,7 +156,8 @@ class Contato
                             //Salvar imagem servidor
                             imagejpeg($img, 'img/contatos/' . $tmpname, 80);
                             //Salvar a url da foto no bd
-                            $sql = $this->con->conectar()->prepare("INSERT INTO foto SET id_contato = :id_contato, url = :url");
+                            $sql = $this->con->conectar()->prepare("INSERT INTO foto_contato SET id_contato = :id_contato, url = :url");
+                            var_dump($sql);
                             $sql->bindValue(":id_contato", $id);
                             $sql->bindValue(":url", $tmpname);
                             $sql->execute();
@@ -176,7 +192,7 @@ class Contato
             $sql = $this->con->conectar()->prepare("SELECT id, url FROM foto_contato WHERE id_contato = :id_contato");
             $sql->bindValue("id_contato", $id);
             $sql->execute();
-            if($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 $array['foto'] = $sql->fetchAll();
             }
         }
